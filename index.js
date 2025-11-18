@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add day info if it's tomorrow
             const todayStr = now.toISOString().split('T')[0];
             if (!minPriceItem.DateTime.startsWith(todayStr)) {
-                minPriceTime += ' (Tom)';
+                minPriceTime += ' (->)';
             }
         }
 

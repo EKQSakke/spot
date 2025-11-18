@@ -63,7 +63,6 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.05);
     position: relative;
     min-height: 500px;
-    /* Ensure height for chart */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -101,67 +100,89 @@ main {
 
 .stat-card p {
     color: var(--accent-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
 
-    #spot-price-chart {
-        width: 100%;
-        height: 100%;
+.stat-card .unit {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.stat-time {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    font-weight: 400;
+}
+
+#chart-container {
+    width: 100%;
+    height: 600px;
+    position: relative;
+}
+
+#spot-price-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ef4444;
+    text-align: center;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer a:hover {
+    color: #818cf8;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
     }
 
-    .loading {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: var(--accent-color);
-        font-size: 1.2rem;
-        font-weight: 500;
+    h1 {
+        font-size: 2rem;
     }
 
-    .error {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #ef4444;
-        text-align: center;
-        background: rgba(239, 68, 68, 0.1);
-        padding: 1rem 2rem;
-        border-radius: 0.5rem;
-        border: 1px solid rgba(239, 68, 68, 0.2);
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    footer {
-        text-align: center;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-        margin-top: auto;
-    }
-
-    footer a {
-        color: var(--accent-color);
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-
-    footer a:hover {
-        color: #818cf8;
-    }
-
-    @media (max-width: 768px) {
-        body {
-            padding: 1rem;
-        }
-
-        h1 {
-            font-size: 2rem;
-        }
-
-        #chart-container {
-            height: 400px;
-        }
+    #chart-container {
+        height: 400px;
     }
 }
