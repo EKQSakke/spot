@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finnish Electricity Spot Price</title>
+    <meta name="description" content="Real-time Finnish electricity spot prices for today and tomorrow.">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Electricity Spot Price</h1>
+            <p class="subtitle">Finland (FI) - Hourly Prices (inc. Tax)</p>
+        </header>
+
+        <main>
+            <div id="stats-container" class="stats-grid">
+                <div class="stat-card">
+                    <h3>Avg Today</h3>
+                    <p id="avg-today">--</p>
+                    <span class="unit">c/kWh</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Avg Tomorrow</h3>
+                    <p id="avg-tomorrow">--</p>
+                    <span class="unit">c/kWh</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Lowest Price</h3>
+                    <p id="lowest-price">--</p>
+                    <span class="unit">c/kWh</span>
+                    <p id="lowest-price-time" class="stat-time">--</p>
+                </div>
+            </div>
+            <div id="chart-container">
+                <div id="spot-price-chart"></div>
+                <div id="loading-indicator" class="loading">Loading data...</div>
+                <div id="error-message" class="error hidden"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Data source: <a href="https://spot-hinta.fi" target="_blank">spot-hinta.fi</a></p>
+        </footer>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
