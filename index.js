@@ -72,7 +72,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Determine current hour price
+        let currentPrice = '--';
+        let currentPriceTime = '';
+
+        // Find the price for the current hour: DateTime <= now < DateTime + 1h
+        const currentHourItem = data.find(item => {
+            const start = new Date(item.DateTime);
+            const end = new Date(start.getTime() + 60 * 60 * 1000);
+            return now >= start && now < end;
+        });
+
+        if (currentHourItem) {
+            currentPrice = (currentHourItem.PriceWithTax * 100).toFixed(2);
+            const date = new Date(currentHourItem.DateTime);
+            currentPriceTime = `until ${new Date(date.getTime() + 60 * 60 * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        } else {
+            // If not found (e.g., before first or after last slot), show next upcoming slot
+            const upcoming = data.find(item => new Date(item.DateTime) > now);
+            if (upcoming) {
+                currentPrice = (upcoming.PriceWithTax * 100).toFixed(2);
+                const date = new Date(upcoming.DateTime);
+                currentPriceTime = `from ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+            }
+        }
+
         // Update DOM
+        const currentPriceEl = document.getElementById('current-price');
+        const currentPriceTimeEl = document.getElementById('current-price-time');
+        if (currentPriceEl) currentPriceEl.textContent = currentPrice;
+        if (currentPriceTimeEl) currentPriceTimeEl.textContent = currentPriceTime;
         document.getElementById('avg-today').textContent = avgToday || '--';
         document.getElementById('avg-tomorrow').textContent = avgTomorrow || '--';
         document.getElementById('lowest-price').textContent = minPrice;
